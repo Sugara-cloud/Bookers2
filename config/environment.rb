@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+
 
 # Load the Rails application.
 require_relative "application"
