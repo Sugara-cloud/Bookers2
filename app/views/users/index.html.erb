@@ -1,3 +1,7 @@
-<h1>user info</h1>
-<p>左にユーザー情報
-　　右側にユーザー一覧</p>
+<%= render 'layouts/header.html.erb',layouts: @layouts %>
+ <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+ 
+ <%= render 'layouts/footer.html.erb',layouts: @layouts %>
+
+<h1>右側に全ユーザー一覧
+showリンクがありuser_showに飛ぶ</h1>

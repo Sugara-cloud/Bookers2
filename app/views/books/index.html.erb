@@ -1,2 +1,8 @@
-<p>一覧画面
-左側にユーザー情報、右側にブック一覧</p>
+<%= render 'layouts/header.html.erb',layouts: @layouts %>
+ <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+ 
+ <%= render 'layouts/footer.html.erb',layouts: @layouts %>
+
+<h1>右側に全ユーザーのブック情報
+タイトルを押すとbook.showに飛ぶ
+オプション</h1>
