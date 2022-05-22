@@ -1,6 +1,18 @@
- <%= render 'layouts/header.html.erb',layouts: @layouts %>
- <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
- 
- <%= render 'layouts/footer.html.erb',layouts: @layouts %>
- <h1>右側にそのユーザーが出したブック一覧、タイトルを押すと
- ブック詳細へ移動</h1>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+    <div class="col-md-8 offset-md-1">
+     <h2>Books</h2>
+     <table>
+       <tr>
+         <th>Title</th>
+         <th>Opinion</th>
+       </tr>
+         <% @book.each do |book| %>
+           <%= link_to book.title,book_path(book.id) %>
+           <%= book.body %>
+         <% end %>
+     </table>
+    </div>
+  </div>
+</div>

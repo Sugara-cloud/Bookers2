@@ -1,0 +1,18 @@
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2>User info</h2>
+<%= form_with model: @user do |f| %>
+  <label for="inputName">Name</lavel>
+  <div class="form-control name">
+  <%= f.text_field :name, autofocus: true%>
+  </div>
+  <label for="inputimage">Image</label>
+  <div class="form-control image">
+  <%= f.file_field:image, placefolder:"Image",accept:"image/*" %>
+  </div>
+  <label for="inputIntroduction">Introduction</label>
+  <div class="form-control introduction">
+  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+  </div>
+  <%= f.submit "Update User" %>
+<% end %>
+</div>

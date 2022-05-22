@@ -1,7 +1,16 @@
-<%= render 'layouts/header.html.erb',layouts: @layouts %>
- <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
- 
- <%= render 'layouts/footer.html.erb',layouts: @layouts %>
-
-<h1>右側に全ユーザー一覧
-showリンクがありuser_showに飛ぶ</h1>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+    <div class="col-lg-8 offset-lg-1">
+      <table class="table table-hover table-invers">
+        <h2>Users</h2>
+        <th>Image</th><th>name</th>
+        <% @user.each do |user| %>
+          <%#<span><%= @user.image % </span>%>
+          <span><%= @user.name %></span>
+          <%#showリンク%>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

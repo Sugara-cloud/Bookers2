@@ -1,8 +1,18 @@
-<%= render 'layouts/header.html.erb',layouts: @layouts %>
- <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
- 
- <%= render 'layouts/footer.html.erb',layouts: @layouts %>
-<p>詳細画面
-左側にユーザー情報
-右側にブック詳細
-edit destroy</p>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+    <div class="col-md-7 offset-md-1" >
+      <h2>Book Detail</h2>
+      <% @books.each do |book| %>
+        <span>
+          <%=link_to book.title,book_path(book.id) %>
+        </span>
+        <span>
+          <%= book.body %></p>
+        </span>
+        <%= link_to "Destroy",book_path(book.id), method: :delete %>
+        <%= link_to "Edit",edit_book_path(book.id) %>
+      <% end %>
+    </div>
+  </div>
+ </div>
