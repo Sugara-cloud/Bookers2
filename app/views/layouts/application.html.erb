@@ -12,11 +12,94 @@
 
   <body>
     <header>
-      <%= render 'layouts/header.html.erb',layouts: @layouts %>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+        <% if user_signed_in? %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to root_path, class:"navbar-brand" do %>
+            <span>Bookers</span>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to user_path(current_user), class:"nav-link text-light"  do %>
+                  <i class="fas fa-home"></i> Home
+                <% end %>
+              </li>
+              <li>
+                <%= link_to users_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-users"></i> Users
+                <% end %>
+              </li>
+              <li>
+                <%= link_to books_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-book-open"></i> Books
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class:"nav-link text-light" do %>
+                  <i class="fas fa-sign-out-alt"></i> Log out
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+         <% else %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <%= link_to root_path, class:"navbar-brand" do %>
+        <span>Bookers</span>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <%= link_to  root_path, class:"nav-link text-light"  do %>
+              <i class="fas fa-home"></i> Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to home_about_path, class:"nav-link text-light" do %>
+              <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+              <i class="fas fa-user-plus"></i> Sign up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+              <i class="fas fa-sign-in-alt"></i> Log in
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<% end %>
     </header>
+    <% if flash[:notice] %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% elsif flash[:alert] %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
     <%= yield %>
     <footer>
-      <%= render 'layouts/footer.html.erb',layouts: @layouts %>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

@@ -1,5 +1,13 @@
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   <h2>User info</h2>
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のerrorが発生しました
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 <%= form_with model: @user do |f| %>
   <label for="inputName">Name</lavel>
   <div class="form-control name">
@@ -7,7 +15,7 @@
   </div>
   <label for="inputimage">Image</label>
   <div class="form-control image">
-  <%= f.file_field:image, placefolder:"Image",accept:"image/*" %>
+  <%= f.file_field:profile_image, placefolder:"Image",accept:"image/*" %>
   </div>
   <label for="inputIntroduction">Introduction</label>
   <div class="form-control introduction">

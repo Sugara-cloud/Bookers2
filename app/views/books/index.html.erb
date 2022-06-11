@@ -1,17 +1,40 @@
 <div class="container">
   <div class="row">
-    <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
+    <div class="col-md-3">
+       <% if @book.errors.any? %>
+      <%= @book.errors.count %>件のerrorが発生しました
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+      <%= render 'layouts/user_info.html.erb',user: @user %>
+    </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <p>Title</p><p>Opinion</p>
-      <% @book.each do |book| %>
-        <span>
-          <%=link_to book.title,book_path(book.id) %>
-        </span>
-        <span>
-          <%= book.body %></p>
-        </span>
-      <% end %>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th colspan="1">
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+          <% @books.each do |book| %>
+            <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user.id) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <td><%=link_to book.title,book_path(book.id) %></td>
+              <td><%= book.body %></td>
+            </tr>
+           </tbody>
+          <% end %>
+      </table>
     </div>
   </div>
 </div>

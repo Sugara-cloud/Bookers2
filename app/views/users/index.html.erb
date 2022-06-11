@@ -1,14 +1,27 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
   <div class="row">
-    <%= render 'layouts/user_info.html.erb',layouts: @layouts %>
-    <div class="col-lg-8 offset-lg-1">
-      <table class="table table-hover table-invers">
+    <div class="col-md-3">
+      <%= render 'layouts/user_info.html.erb',user: @user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
         <h2>Users</h2>
-        <th>Image</th><th>name</th>
-        <% @user.each do |user| %>
-          <%#<span><%= @user.image % </span>%>
-          <span><%= @user.name %></span>
-          <%#showリンク%>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <th><%= image_tag user.get_profile_image(100,100) %></th>
+              <th><%= user.name %></th>
+              <th><%= link_to "Show",user_path(user) %>
+              </th>
+            </tr>
+          </tbody>
         <% end %>
       </table>
     </div>

@@ -2,35 +2,50 @@ class BooksController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @book = Book.all
+    @books = Book.all
+    @user = current_user
+    @book = Book.new
   end
 
   def show
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def create
-  @book = Book.new(book_params)
-  @book.user_id = current_user.id#ここでエラーが起こりそう
-  @book.save
-  redirect_to '/users'
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      redirect_to book_path(@book.id), notice: 'successfully'
+    else
+      @books = Book.all
+      @user = current_user
+      render :index
+    end
   end
 
   def edit
-    #@book = Book.new(book_params)
     @book = Book.find(params[:id])
-    #@book.save
-    #redirect_to
+    if @book.user == current_user
+      render "edit"
+    else
+      redirect_to books_path
+    end
   end
 
   def update
     @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(@book.id), notice: 'successfully'
+    else
+      render :edit
+    end
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to '/users'
+    redirect_to '/books', alert: 'successfully'
   end
 
   private
